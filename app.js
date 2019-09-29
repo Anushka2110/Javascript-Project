@@ -1,38 +1,40 @@
-function createNode(element)
-{
-    return document.createElement(element);
-}
+const app = document.getElementById('root')
 
-function append(parent,el)
-{
-    return parent.appendChild(el);
-}
-const ul = document.getElementById("authors");
+const logo = document.createElement('img')
+logo.src = 'img1.jpg'
 
-const url = 'https://randomuser.me/api/?results=10';
+const container = document.createElement('div')
+container.setAttribute('class', 'container')
 
-fetch(url)
-.then((resp) => resp.json())
-.then(function(data){
-    let authors = data.results;
+app.appendChild(logo)
+app.appendChild(container)
 
-    return authors.map(function(author){
-        let li = createNode('li'),
-        img = createNode('img'),
-        span = createNode('span');
+var request = new XMLHttpRequest()
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
+request.onload = function() {
+  // Begin accessing JSON data here
+  var data = JSON.parse(this.response)
+  if (request.status >= 200 && request.status < 400) {
+    data.forEach(movie => {
+      const card = document.createElement('div')
+      card.setAttribute('class', 'card')
 
-        img.src = author.picture.medium;
+      const h1 = document.createElement('h1')
+      h1.textContent = movie.title
 
-        span.textContent=`${user.name.first} ${user.name.last}`;
-        
-        append(li,img);
-        append(li,span);
-        append(lu,li);
+      const p = document.createElement('p')
+      movie.description = movie.description.substring(0, 300)
+      p.textContent = `${movie.description}...`
 
-    
+      container.appendChild(card)
+      card.appendChild(h1)
+      card.appendChild(p)
     })
-})
+  } else {
+    const errorMessage = document.createElement('h1')
+    errorMessage.textContent = `It doesn't work`;
+    app.appendChild(errorMessage)
+  }
+}
 
-.catch(function(error){
-    console.log(JSON.stringify(error));
-});
+request.send()
