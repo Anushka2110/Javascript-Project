@@ -76,4 +76,21 @@ html {
     background-image: linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%);
   }
 
+  button{
+    box-align: center;
+    height: 70 px;
+    width: 70px;
+    color: black;
+    background-color: aqua;
+    font: sans-serif;
+
+  }
+
+  #movies{
+    margin-left: 45%;
+    
+  }
+
+  
+
   
