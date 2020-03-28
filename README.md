@@ -3,7 +3,7 @@ Javascript webpage with calls to Studio Ghibli API.
 This application uses Javascript, HTML, CSS. The buttons send calls to API and return data on the webpage. 
 Right now, every time you press a button, the new data keeps on adding to the page, without removing the previous data. Scroll down to see it.
 
-Student Name : Anushka Aggarwal
+Student Name : Anushka Aggarwal<br>
 Student ID : 101195651
 
 Instructions to Run :
